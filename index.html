@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Gamezone - Premium Gaming Gadgets</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon"><i class="fas fa-gamepad"></i></span>
+                    <span>Elite Gamezone</span>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <button class="btn-secondary" onclick="showLogin()">Login</button>
+                    <button class="btn" onclick="showRegister()">Sign Up</button>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Elite Gaming Gadgets</h1>
+                <p>Discover the ultimate collection of gaming consoles, keyboards, controllers, and accessories for the ultimate gaming experience</p>
+                <div class="hero-buttons">
+                    <button class="btn" onclick="scrollToProducts()">Shop Now</button>
+                    <button class="btn-secondary" onclick="scrollToCategories()">Browse Categories</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Brands -->
+        <!-- <section class="featured-brands">
+            <div class="container">
+                <div class="brands-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Nintendo.svg" alt="Nintendo" class="brand-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Playstation_logo_colour.svg" alt="PlayStation" class="brand-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Xbox_one_logo.svg" alt="Xbox" class="brand-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Razer_snake_logo.svg" alt="Razer" class="brand-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Logitech_logo_black.svg" alt="Logitech" class="brand-logo">
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Search and Filter -->
+        <section class="search-filter">
+            <div class="container">
+                <div class="search-filter-content">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search for gaming products..." onkeyup="searchProducts()">
+                    </div>
+                    <div class="filter-options">
+                        <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+                        <button class="filter-btn" onclick="filterProducts('console')">Consoles</button>
+                        <button class="filter-btn" onclick="filterProducts('keyboard')">Keyboards</button>
+                        <button class="filter-btn" onclick="filterProducts('controller')">Controllers</button>
+                        <button class="filter-btn" onclick="filterProducts('accessory')">Accessories</button>
+                        <select onchange="sortProducts(this.value)" style="padding: 0.8rem 1.2rem; border: 2px solid #e0e0e0; border-radius: 6px; font-family: 'Afacad', sans-serif; font-weight: 500; cursor: pointer; min-height: 44px;">
+                            <option value="default">Sort by</option>
+                            <option value="name">Name A-Z</option>
+                            <option value="price-low">Price Low-High</option>
+                            <option value="price-high">Price High-Low</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products" id="products">
+            <div class="container">
+                <h2 class="section-title">Featured Products</h2>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories" id="categories">
+            <div class="container">
+                <h2 class="section-title">Shop by Category</h2>
+                <div class="categories-grid">
+                    <div class="category-card" onclick="filterProducts('console')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1731762524985-635ba4710fee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fFBsYXlzdGF0aW9ufGVufDB8MnwwfHx8MA%3D%3D" alt="Gaming Consoles">
+                        </div>
+                        <div class="category-info">
+                            <h3 class="category-title">Gaming Consoles</h3>
+                            <p class="category-count">12 Products</p>
+                        </div>
+                    </div>
+                    <div class="category-card" onclick="filterProducts('keyboard')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njh8fGtleWJvYXJkJTIwZ2FtaW5nfGVufDB8MnwwfHx8MA%3D%3D" alt="Gaming Keyboards">
+                        </div>
+                        <div class="category-info">
+                            <h3 class="category-title">Gaming Keyboards</h3>
+                            <p class="category-count">18 Products</p>
+                        </div>
+                    </div>
+                    <div class="category-card" onclick="filterProducts('controller')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1629794456428-4470012b58d2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTUzfHxQbGF5c3RhdGlvbnxlbnwwfDJ8MHx8fDA%3D" alt="Controllers">
+                        </div>
+                        <div class="category-info">
+                            <h3 class="category-title">Controllers</h3>
+                            <p class="category-count">15 Products</p>
+                        </div>
+                    </div>
+                    <div class="category-card" onclick="filterProducts('accessory')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1678058315341-f17934861ae0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGdhbWluZyUyMEFjY2Vzc29yaWVzfGVufDB8fDB8fHww" alt="Gaming Accessories">
+                        </div>
+                        <div class="category-info">
+                            <h3 class="category-title">Accessories</h3>
+                            <p class="category-count">25 Products</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates on new products, exclusive deals, and gaming tips straight to your inbox.</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- User Profile Section -->
+        <section class="user-profile" id="userProfile">
+            <div class="container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-pic">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile Picture">
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="profileName">John Doe</h2>
+                            <p id="profileEmail">john@example.com</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="profileNameInput" value="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="profileEmailInput" value="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="profileLocationInput" value="New York, USA">
+                    </div>
+                    <button class="btn" onclick="updateProfile()">Update Profile</button>
+                    
+                    <div class="order-history">
+                        <h3>Order History</h3>
+                        <div class="order-item">
+                            <div class="order-header">
+                                <span class="order-date">July 5, 2025</span>
+                                <span class="order-status">Delivered</span>
+                            </div>
+                            <div class="order-products">
+                                <div class="order-product">
+                                    <div class="order-product-image">
+                                        <img src="https://m.media-amazon.com/images/I/61IG46p-yHL._AC_SX679_.jpg" alt="PlayStation 5">
+                                    </div>
+                                    <div class="order-product-info">
+                                        <div class="order-product-name">PlayStation 5 Console</div>
+                                        <div class="order-product-price">$499.99</div>
+                                    </div>
+                                </div>
+                                <div class="order-product">
+                                    <div class="order-product-image">
+                                        <img src="https://m.media-amazon.com/images/I/71H2A22DEGL._AC_SX679_.jpg" alt="Wireless Controller">
+                                    </div>
+                                    <div class="order-product-info">
+                                        <div class="order-product-name">Wireless Gaming Controller</div>
+                                        <div class="order-product-price">$69.99</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-total">Total: $569.98</div>
+                        </div>
+                        <div class="order-item">
+                            <div class="order-header">
+                                <span class="order-date">June 20, 2025</span>
+                                <span class="order-status">Delivered</span>
+                            </div>
+                            <div class="order-products">
+                                <div class="order-product">
+                                    <div class="order-product-image">
+                                        <img src="https://m.media-amazon.com/images/I/71W7YV1yNFL._AC_SX679_.jpg" alt="Gaming Headset">
+                                    </div>
+                                    <div class="order-product-info">
+                                        <div class="order-product-name">Gaming Headset Pro</div>
+                                        <div class="order-product-price">$89.99</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-total">Total: $89.99</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <span class="close" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be populated by JavaScript -->
+        </div>
+        <div class="cart-total">
+            <div class="cart-total-amount">Total: $<span id="cartTotal">0.00</span></div>
+            <button class="btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" onclick="hideLogin()">&times;</span>
+            <h2>Login to Elite Gamezone</h2>
+            <form onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p style="text-align: center; margin-top: 1rem;">Don't have an account? <a href="#" onclick="showRegister(); hideLogin();" style="color: #ff4500;">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close" onclick="hideRegister()">&times;</span>
+            <h2>Join Elite Gamezone</h2>
+            <form onsubmit="register(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="registerLocation" required>
+                </div>
+                <button type="submit" class="btn">Create Account</button>
+                <p style="text-align: center; margin-top: 1rem;">Already have an account? <a href="#" onclick="showLogin(); hideRegister();" style="color: #ff4500;">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elite Gamezone</h3>
+                    <p>Your ultimate destination for premium gaming gadgets and accessories.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#" onclick="filterProducts('console')">Gaming Consoles</a></li>
+                        <li><a href="#" onclick="filterProducts('keyboard')">Keyboards</a></li>
+                        <li><a href="#" onclick="filterProducts('controller')">Controllers</a></li>
+                        <li><a href="#" onclick="filterProducts('accessory')">Accessories</a></li>
+                        <li><a href="#">Gaming Chairs</a></li>
+                        <li><a href="#">VR Headsets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                    <h3 style="margin-top: 1rem;">Payment Methods</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                        </div>
+                        <div class="payment-method">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                        </div>
+                        <div class="payment-method">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                        </div>
+                        <div class="payment-method">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" alt="Apple Pay">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elite Gamezone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
